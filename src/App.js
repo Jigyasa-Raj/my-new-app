@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import JsonInputForm from './components/JsonInputForm';
+import ResponseComponent from './components/ResponseComponent';
 
-function App() {
+const App = () => {
+  const [response, setResponse] = useState(null);
+  const [optionsVisible, setOptionsVisible] = useState(false);
+
+  useEffect(() => {
+    document.title = 'RA2111027010184';
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Your Roll Number</h1>
+      <JsonInputForm setResponse={setResponse} setOptionsVisible={setOptionsVisible} />
+      {optionsVisible && response && <ResponseComponent response={response} />}
     </div>
   );
-}
+};
 
 export default App;
